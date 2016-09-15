@@ -9,9 +9,7 @@
 the value is another hash with hit, stand, split, double_hit, or double_stand
 
 
-
-
-
+can you add values in the hash?
 
 
 

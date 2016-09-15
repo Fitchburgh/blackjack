@@ -1,60 +1,81 @@
-J = 10
-Q = 10
-K = 10
+card_array = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-card_array = [0.to_i, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-first_card = {
-  card_1: "2",
-  card_2: "3",
-  card_3: "4",
-  card_4: "5",
-  card_5: "6",
-  card_6: "7",
-  card_7: "8",
-  card_8: "9",
-  card_9: "10",
-  card_10: "A" #remember this is equal to 0 as far as Ruby is concerned
+
+optimal_move_wihout_ace = {
+  "hit" => {
+    5 => [0, *2..10],
+    6 => [0, *2..10],
+    7 => [0, *2..10],
+    8 => [0, *2..4, *7..10],
+    9 => [0, *7..10],
+    10 => [0, 10],
+    12 => [0, 2, 3, *7..10],
+    13 => [0, *7..10],
+    14 => [0, *7..10],
+    15 => [0, *7..10],
+    16 => [0, *7..10]
+  },
+  "stand" => {
+    12 => [4, 5, 6],
+    13 => [*2..6],
+    14 => [*2..6],
+    15 => [*2..6],
+    16 => [*2..6]
+  },
+  "double_or_hit" => {
+    8 => [5, 6],
+    9 => [0, *2..6],
+    10 => [0, *2..9],
+    11 => [0, *2..10]
+  }
+}
+optimal_move_with_ace["hit"][14][5]
+optimal_move_with_ace = {
+  "hit" => {
+    13 => [0, 2, 3, *7..10],
+    14 => [0, 2, 3, *7..10],
+    15 => [0, 2, 3, *7..10],
+    16 => [0, 2, 3, *7..10],
+    17 => [0, *7..10],
+    18 => [9, 10]
+  },
+  "stand" => {
+    18 => [0, 2, 7, 8],
+    19 => [0, *2..5, *7..10],
+    20 => [0, *2..10]
+    },
+  "double_or_hit" => {
+    13 => [*4..6],
+    14 => [*4..6],
+    15 => [*4..6],
+    16 => [*4..6],
+    17 => [*2..6]
+  },
+  "double_or_stand" => {
+    18 => [*3..6],
+    19 => [6]
+  },
 }
 
-second_card = {
-  card_1: "2",
-  card_2: "3",
-  card_3: "4",
-  card_4: "5",
-  card_5: "6",
-  card_6: "7",
-  card_7: "8",
-  card_8: "9",
-  card_9: "10",
-  card_10: "A" #remember this is equal to 0 as far as Ruby is concerned
-}
 
- print second_card
-dealer_array = [2, 3, 4, 5, 6, 7, 8, 9, 10, 0.to_i]
-
-optimal_move = {
-
-}
-
-
-print "Please enter your first card: ≈ "
-user_first_card = gets.chomp.to_i
-if card_array.include? user_first_card
-else
-  puts "This is not a card.  If you entered a facecard please enter 10!"
-end
-
-print "Please enter your second card: ≈ "
-user_second_card = gets.chomp.to_i
-if card_array.include? user_second_card
-else
-  puts "This is not a card.  If you entered a facecard please enter 10!"
-end
-
-user_hand = user_first_card + user_second_card
-if user_hand = 21
-  print "Stand you dummy! You've beaten the dealer!"
-elsif user_hand = [17..20]
-  
-
-print "Your hand is a #{user_hand}, good start! Here's what to do: "
+#
+# print "Please enter your first card => ≈ "
+# user_first_card = gets.chomp.to_i
+# if card_array.include? user_first_card
+# else
+#   puts "This is not a card.  If you entered a facecard please enter 10!"
+# end
+#
+# print "Please enter your second card => ≈ "
+# user_second_card = gets.chomp.to_i
+# if card_array.include? user_second_card
+# else
+#   puts "This is not a card.  If you entered a facecard please enter 10!"
+# end
+#
+# user_hand = user_first_card + user_second_card
+# if user_hand == 21
+#   print "You've beaten the dealer! Rake in your dough!"
+# end
+#
+# print "Your hand is a #{user_hand}, good start! Here's what to do => "
