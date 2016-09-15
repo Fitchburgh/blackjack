@@ -1,0 +1,24 @@
+-hash must include the card entered as they key.  
+the value is another hash with hit, stand, split, double_hit, or double_stand
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
