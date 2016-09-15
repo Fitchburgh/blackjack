@@ -1,4 +1,11 @@
--hash must include the card entered as they key.  
+-1hash must include the first card entered as the key
+-2hash must include the second card entered as the key
+-array gives total
+
+-4hash dealers card (this is where I spit out the answer on whether to hit etc.)
+  - makes sure to put in a .downcase for Jack Queen and King and count it = 10
+
+
 the value is another hash with hit, stand, split, double_hit, or double_stand
 
 

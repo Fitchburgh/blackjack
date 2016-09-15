@@ -1,4 +1,4 @@
-# blackjack
+# Blackjack Advisor
 
 This is a readme for the blackjack program!
 
