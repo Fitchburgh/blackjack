@@ -102,8 +102,6 @@ else
     user_second_card = gets.chomp
   end
 
-
-
   if user_second_card == "A"
     user_second_card = 11
   end
