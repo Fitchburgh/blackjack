@@ -22,6 +22,11 @@ optimal_move_without_ace = {
     14 => [*2..6],
     15 => [*2..6],
     16 => [*2..6]
+    17 => [0, *2..6]
+    18 => [0, *2..6]
+    19 => [0, *2..6]
+    20 => [0, *2..6]
+    "A" => [0, *2..6]
   },
   "double_or_hit" => {
     8 => [5, 6],
@@ -70,11 +75,17 @@ end
 
 print "Please enter your first card => ≈ "
 user_first_card = gets.chomp
+if user_first_card == "A".downcase
+  ace = "a".to_i + 11
+end
 
 while !card_array.include?(user_first_card) #PROBLEM HERE
   puts "This is not a card.  If you entered a facecard please enter 10!"
   print "Please enter your first card => ≈ "
   user_first_card = gets.chomp
+  if user_second_card == "A".downcase
+    ace = "a".to_i + 11
+  end
 end
 
 print "Please enter your second card => ≈ "
@@ -84,11 +95,16 @@ user_second_card = gets.chomp
 if user_second_card + user_first_card == 21
   print "You've beaten the dealer! Rake in your dough!"
 else
-  if !card_array.include?(user_second_card) #PROBLEM HERE
+  while !card_array.include?(user_second_card) #PROBLEM HERE
     puts "This is not a card.  If you entered a facecard please enter 10!"
-  elsif
-    user_second_card == "A".downcase
-    "a".to_i + 11
+    print "Please enter your first card => ≈ "
+    user_second_card = gets.chomp
+  end
+
+
+
+  if user_second_card == "A".downcase
+    ace = "a".to_i + 11
   end
 
   user_hand = user_first_card.to_i + user_second_card.to_i
@@ -99,16 +115,20 @@ else
 
 
 
-  has_ace = false
+    has_ace = false
 
-  if has_ace
+  if user_hand
     optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_with_ace)
-  else
+  elsif !user_hand.include?("A")
     optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_without_ace)
+  else
   end
+
+
 
   puts "Optimal Move: #{optimal_move}"
 end
+
 
 # break
 # print "You've beaten the dealer! Rake in your dough!"
