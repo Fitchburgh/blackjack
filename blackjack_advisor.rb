@@ -64,7 +64,8 @@ optimal_move_with_ace = {
 }
 
 def get_optimal_move(user_hand, dealer_card, optimal_moves)
-  optimal_moves.each do |optimal_move, user_vs_dealer|
+  ["stand", "hit", "double_or_hit", "double_or_stand"].each do |optimal_move|
+    user_vs_dealer = optimal_moves[optimal_move]
     if user_vs_dealer.has_key?(user_hand)
       dealer_cards = user_vs_dealer[user_hand]
       if dealer_cards.include?(dealer_card)
