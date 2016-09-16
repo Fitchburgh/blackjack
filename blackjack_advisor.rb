@@ -4,6 +4,7 @@ user_hand = 0
 
 optimal_move_without_ace = {
   "hit" => {
+    4 => [0, *2..10],
     5 => [0, *2..10],
     6 => [0, *2..10],
     7 => [0, *2..10],
@@ -108,21 +109,18 @@ else
   end
 
   user_hand = user_first_card.to_i + user_second_card.to_i
-  print "What is the house showing: ≈ "
-  dealer_card = gets.chomp.to_i
+  print "So you've got a #{user_hand}...What is the house showing: ≈ "
+  dealer_card = gets.chomp
+
   if has_ace_arr.include?(dealer_card)
     puts "Better just stand..."
   elsif user_hand == 22
       print "Split those bad boys!"
-    end
-  end
-
-    if user_hand
-      optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_with_ace)
-    elsif !user_hand.include?("A", 0)
-      optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_without_ace)
-    else
-    end
+  elsif user_hand != 22 && user_first_card != 11 || user_second_card != 11
+    optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_with_ace)
+    puts "Optimal Move: #{optimal_move}"
+  elsif user_hand == (user_first_card == 11 || user_second_card == 11)
+    optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_without_ace)
     puts "Optimal Move: #{optimal_move}"
   end
 end
