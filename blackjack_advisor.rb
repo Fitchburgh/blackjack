@@ -110,22 +110,23 @@ else
 
   user_hand = user_first_card.to_i + user_second_card.to_i
   print "So you've got a #{user_hand}...What is the house showing: ≈ "
-  dealer_card = gets.chomp
+  dealer_card = gets.chomp.to_i
 
   if has_ace_arr.include?(dealer_card)
     puts "Better just stand..."
   elsif user_hand == 22
       print "Split those bad boys!"
-  elsif user_hand != 22 && user_first_card != 11 || user_second_card != 11
+  elsif user_hand != 22 && (user_first_card != 11 || user_second_card != 11)
     optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_with_ace)
     puts "Optimal Move: #{optimal_move}"
-  elsif user_hand == (user_first_card == 11 || user_second_card == 11)
+  elsif user_first_card == 11 || user_second_card == 11
     optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_without_ace)
+
     puts "Optimal Move: #{optimal_move}"
   end
 end
 
-p "Your hand is #{user_hand}"
+# p "Your hand is #{user_hand}"
 
 
 
