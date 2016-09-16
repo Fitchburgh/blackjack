@@ -1,7 +1,8 @@
-card_array = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+card_array = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 
+user_hand = 0
 
-optimal_move_wihout_ace = {
+optimal_move_without_ace = {
   "hit" => {
     5 => [0, *2..10],
     6 => [0, *2..10],
@@ -29,7 +30,6 @@ optimal_move_wihout_ace = {
     11 => [0, *2..10]
   }
 }
-optimal_move_with_ace["hit"][14][5]
 optimal_move_with_ace = {
   "hit" => {
     13 => [0, 2, 3, *7..10],
@@ -57,25 +57,58 @@ optimal_move_with_ace = {
   },
 }
 
+def get_optimal_move(user_hand, dealer_card, optimal_moves)
+  optimal_moves.each do |optimal_move, user_vs_dealer|
+    if user_vs_dealer.has_key?(user_hand)
+      dealer_cards = user_vs_dealer[user_hand]
+      if dealer_cards.include?(dealer_card)
+        return optimal_move
+      end
+    end
+  end
+end
 
-#
-# print "Please enter your first card => ≈ "
-# user_first_card = gets.chomp.to_i
-# if card_array.include? user_first_card
-# else
-#   puts "This is not a card.  If you entered a facecard please enter 10!"
-# end
-#
-# print "Please enter your second card => ≈ "
-# user_second_card = gets.chomp.to_i
-# if card_array.include? user_second_card
-# else
-#   puts "This is not a card.  If you entered a facecard please enter 10!"
-# end
-#
-# user_hand = user_first_card + user_second_card
-# if user_hand == 21
-#   print "You've beaten the dealer! Rake in your dough!"
-# end
-#
-# print "Your hand is a #{user_hand}, good start! Here's what to do => "
+print "Please enter your first card => ≈ "
+user_first_card = gets.chomp
+
+while !card_array.include?(user_first_card) #PROBLEM HERE
+  puts "This is not a card.  If you entered a facecard please enter 10!"
+  print "Please enter your first card => ≈ "
+  user_first_card = gets.chomp
+end
+
+print "Please enter your second card => ≈ "
+
+user_second_card = gets.chomp
+
+if user_second_card + user_first_card == 21
+  print "You've beaten the dealer! Rake in your dough!"
+else
+  if !card_array.include?(user_second_card) #PROBLEM HERE
+    puts "This is not a card.  If you entered a facecard please enter 10!"
+  elsif
+    user_second_card == "A".downcase
+    "a".to_i + 11
+  end
+
+  user_hand = user_first_card.to_i + user_second_card.to_i
+
+  print "What is the house showing: ≈ "
+  dealer_card = gets.chomp.to_i
+  puts "Your hand is a #{user_hand}, good start! Here's what to do:"
+
+
+
+  has_ace = false
+
+  if has_ace
+    optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_with_ace)
+  else
+    optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_without_ace)
+  end
+
+  puts "Optimal Move: #{optimal_move}"
+end
+
+# break
+# print "You've beaten the dealer! Rake in your dough!"
