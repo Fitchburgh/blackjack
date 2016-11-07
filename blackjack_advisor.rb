@@ -36,6 +36,7 @@ optimal_move_without_ace = {
     11 => [0, *2..10]
   }
 }
+
 optimal_move_with_ace = {
   "hit" => {
     13 => [0, 2, 3, *7..10],
@@ -60,14 +61,16 @@ optimal_move_with_ace = {
   "double_or_stand" => {
     18 => [*3..6],
     19 => [6]
-  },
+  }
 }
 
 def get_optimal_move(user_hand, dealer_card, optimal_moves)
   ["stand", "hit", "double_or_hit", "double_or_stand"].each do |optimal_move|
     user_vs_dealer = optimal_moves[optimal_move]
+
     if user_vs_dealer.has_key?(user_hand)
       dealer_cards = user_vs_dealer[user_hand]
+
       if dealer_cards.include?(dealer_card)
         return optimal_move
       end
@@ -85,9 +88,6 @@ while !card_array.include?(user_first_card)
   puts "This is not a card.  If you entered a facecard please enter 10!"
   print "Please enter your first card => ≈ "
   user_first_card = gets.chomp
-  if user_first_card == "A".downcase.to_i
-
-  end
 end
 
 print "Please enter your second card => ≈ "
@@ -113,22 +113,16 @@ else
 
   if has_ace_arr.include?(dealer_card)
     puts "Better just stand..."
+
   elsif user_hand == 22
       print "Split those bad boys!"
+
   elsif user_hand != 22 && (user_first_card != 11 || user_second_card != 11)
     optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_with_ace)
     puts "Optimal Move: #{optimal_move}"
+
   elsif user_first_card == 11 || user_second_card == 11
     optimal_move = get_optimal_move(user_hand, dealer_card, optimal_move_without_ace)
-
     puts "Optimal Move: #{optimal_move}"
   end
 end
-
-# p "Your hand is #{user_hand}"
-
-
-
-
-# break
-# print "You've beaten the dealer! Rake in your dough!"

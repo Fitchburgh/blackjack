@@ -22,10 +22,4 @@ Please enter the dealer's card:
 Your optimal move is to stand.
 You can either allow the user to enter J, Q, or K for Jack, Queen, or King, respectively, or you can expect the user to enter a 10 for any of these. However, the user should have to enter A for an Ace.
 
-Advanced Mode
-
-In addition to the three inputs given above, allow the user to also specify whether the game is being played with 1 deck, 2 decks, or 4 or more decks.
-
-Epic Mode
-
-Modify your hard mode game to allow the program to continue running in the case of a hit. If it suggests that you hit, it should then ask you what card you received on your hit. It should then continue to offer you additional advice until the hand is over (i.e. until it tells you do something other than hit).
+-------------------------------------------
